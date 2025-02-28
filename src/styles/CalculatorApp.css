@@ -1,0 +1,111 @@
+/* Calculator Styles */
+.calculator-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100%;
+    padding: 20px 0;
+  }
+  
+  .calculator {
+    width: 100%;
+    max-width: 300px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .calculator .display {
+    background-color: #262626;
+    color: #fff;
+    text-align: right;
+    padding: 10px;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    word-break: break-all;
+  }
+  
+  .calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+  
+  .calculator .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    padding: 0;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+  
+  /* Number buttons */
+  .calculator .number {
+    background-color: #333;
+  }
+  
+  .calculator .number:hover {
+    background-color: #444;
+  }
+  
+  /* Operator buttons */
+  .calculator .operator {
+    background-color: #ff6b00;
+    color: #1a1a1a;
+  }
+  
+  .calculator .operator:hover {
+    background-color: #ff8c00;
+  }
+  
+  /* Clear button */
+  .calculator .clear {
+    background-color: #ff3333;
+    color: white;
+  }
+  
+  .calculator .clear:hover {
+    background-color: #ff5555;
+  }
+  
+  /* Equals button */
+  .calculator .equals {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .calculator .equals:hover {
+    background-color: #45a049;
+  }
+  
+  /* Ensure zero spans two columns */
+  .calculator .zero {
+    grid-column: span 2;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .calculator {
+      max-width: 100%;
+      margin: 0 10px;
+    }
+  
+    .calculator .button {
+      font-size: 0.9rem;
+    }
+  }

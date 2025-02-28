@@ -1,0 +1,227 @@
+/* Navbar.css - Complete Replacement */
+:root {
+  --navbar-width: 260px;
+  --navbar-collapsed-width: 0;
+  --navbar-bg: #222222;
+  --accent-primary: #D39D55;
+  --accent-secondary: #970e47;
+  --text-color: #e2e8f0;
+  --text-muted: #94a3b8;
+  --transition-speed: 0.3s;
+}
+
+/* Main navbar */
+.custom-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--navbar-width);
+  height: 100vh;
+  background-color: var(--navbar-bg);
+  color: var(--text-color);
+  transition: width var(--transition-speed);
+  overflow-x: hidden;
+  z-index: 1030;
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-navbar.collapsed {
+  width: var(--navbar-collapsed-width);
+}
+
+/* Brand section */
+.navbar-header {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(211, 157, 85, 0.15);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #D39D55 0%, #970e47 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.navbar-logo {
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.brand-name {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #D39D55 0%, #970e47 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Divider */
+.navbar-divider {
+  padding: 1rem 1.5rem 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-divider span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  padding: 0 0.5rem;
+}
+
+.navbar-divider::before,
+.navbar-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(211, 157, 85, 0.15);
+}
+
+/* Navbar content */
+.navbar-content {
+  padding: 1rem 0.5rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Navigation links - SIMPLIFIED */
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  color: var(--text-color);
+  text-decoration: none;
+  margin: 0.2rem 0.5rem;
+  border-radius: 8px;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--accent-primary);
+}
+
+.nav-link.active {
+  color: var(--accent-primary);
+  border-bottom: 2px solid var(--accent-primary);
+}
+
+.icon-container {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.nav-link i {
+  font-size: 1.2rem;
+  color: #D39D55;
+}
+
+.link-text {
+  white-space: nowrap;
+}
+
+/* Hide text when collapsed */
+.collapsed .brand-name,
+.collapsed .navbar-divider span,
+.collapsed .link-text {
+  display: none;
+}
+
+/* Hamburger toggle button */
+.nav-toggle-btn {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background-color: var(--navbar-bg);
+  border: 2px solid var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1050;
+  transition: left var(--transition-speed);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav-toggle-btn .hamburger-icon {
+  font-size: 28px;
+  color: var(--accent-primary);
+  line-height: 1;
+}
+
+/* Button position when navbar is expanded */
+.custom-navbar:not(.collapsed) + .nav-toggle-btn {
+  left: calc(var(--navbar-width) - 20px);
+}
+
+/* Backdrop for mobile */
+.navbar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1020;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--transition-speed);
+}
+
+.navbar-backdrop:not(.collapsed) {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Responsive behavior */
+@media (max-width: 767.98px) {
+  .custom-navbar {
+    transform: translateX(0);
+  }
+  
+  .custom-navbar.collapsed {
+    transform: translateX(-100%);
+  }
+  
+  .nav-toggle-btn {
+    left: 20px !important;
+  }
+}
+
+/* Page content adjustment */
+body {
+  padding-left: var(--navbar-width);
+  transition: padding-left var(--transition-speed);
+}
+
+body.nav-collapsed {
+  padding-left: var(--navbar-collapsed-width);
+}
+
+@media (max-width: 767.98px) {
+  body {
+    padding-left: 0;
+  }
+}

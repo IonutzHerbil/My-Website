@@ -1,0 +1,19 @@
+/* src/styles/Footer.css */
+.custom-footer {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 1rem 0;
+    border-top: 1px solid #970e47; /* lime green accent */
+    margin-top: 2rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-footer a {
+    color: #D39D55;
+    text-decoration: none;
+  }
+  
+  .custom-footer a:hover {
+    text-decoration: underline;
+  }
+  
