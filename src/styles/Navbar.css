@@ -1,4 +1,4 @@
-/* Navbar.css - Complete Replacement */
+/* Navbar.css - Correctly Fixed version */
 :root {
   --navbar-width: 260px;
   --navbar-collapsed-width: 0;
@@ -19,21 +19,20 @@
   height: 100vh;
   background-color: var(--navbar-bg);
   color: var(--text-color);
-  transition: width var(--transition-speed);
-  overflow-x: hidden;
   z-index: 1030;
   box-shadow: 2px 0 15px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
+  transition: transform var(--transition-speed);
 }
 
+/* Collapsed state */
 .custom-navbar.collapsed {
-  width: var(--navbar-collapsed-width);
+  transform: translateX(-100%);
 }
 
 /* Brand section */
 .navbar-header {
-  padding: 1.5rem;
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgba(211, 157, 85, 0.15);
@@ -44,22 +43,36 @@
   align-items: center;
 }
 
+/* Add these styles to your Navbar.css file */
+
+/* Updated logo container for image */
 .logo-container {
-  width: 42px;
-  height: 42px;
-  background: linear-gradient(135deg, #D39D55 0%, #970e47 100%);
+  width: 120px;
+  height: 122px;
+  background: transparent; /* Remove the gradient background */
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 15px;
+  margin-right: 5px;
+  overflow: hidden; /* Ensure the image stays within the container */
 }
 
+/* Style for the logo image */
+.navbar-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* This ensures the image maintains its aspect ratio */
+}
+
+/* You can remove or comment out these styles if they're still in your CSS */
+/*
 .navbar-logo {
   color: white;
   font-weight: 700;
   font-size: 18px;
 }
+*/
 
 .brand-name {
   margin: 0;
@@ -100,7 +113,7 @@
   overflow-y: auto;
 }
 
-/* Navigation links - SIMPLIFIED */
+/* Navigation links */
 .nav-link {
   display: flex;
   align-items: center;
@@ -139,13 +152,6 @@
   white-space: nowrap;
 }
 
-/* Hide text when collapsed */
-.collapsed .brand-name,
-.collapsed .navbar-divider span,
-.collapsed .link-text {
-  display: none;
-}
-
 /* Hamburger toggle button */
 .nav-toggle-btn {
   position: fixed;
@@ -154,26 +160,26 @@
   width: 48px;
   height: 48px;
   border-radius: 8px;
-  background-color: var(--navbar-bg);
+  background-color: #970e47;
   border: 2px solid var(--accent-primary);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 1050;
-  transition: left var(--transition-speed);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: left var(--transition-speed);
+}
+
+/* Button position when navbar is open */
+.nav-toggle-btn:not(.collapsed) {
+  left: calc(var(--navbar-width) - 24px);
 }
 
 .nav-toggle-btn .hamburger-icon {
   font-size: 28px;
   color: var(--accent-primary);
   line-height: 1;
-}
-
-/* Button position when navbar is expanded */
-.custom-navbar:not(.collapsed) + .nav-toggle-btn {
-  left: calc(var(--navbar-width) - 20px);
 }
 
 /* Backdrop for mobile */
@@ -185,43 +191,35 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1020;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity var(--transition-speed);
-}
-
-.navbar-backdrop:not(.collapsed) {
   visibility: visible;
   opacity: 1;
+  transition: opacity var(--transition-speed), visibility var(--transition-speed);
 }
 
-/* Responsive behavior */
-@media (max-width: 767.98px) {
-  .custom-navbar {
-    transform: translateX(0);
-  }
-  
-  .custom-navbar.collapsed {
-    transform: translateX(-100%);
-  }
-  
-  .nav-toggle-btn {
-    left: 20px !important;
-  }
+.navbar-backdrop.collapsed {
+  visibility: hidden;
+  opacity: 0;
 }
 
-/* Page content adjustment */
+/* Page content adjustment - CRITICAL FIX */
 body {
-  padding-left: var(--navbar-width);
+  padding-left: 0;
   transition: padding-left var(--transition-speed);
 }
 
-body.nav-collapsed {
-  padding-left: var(--navbar-collapsed-width);
+/* When navbar is open, push content right */
+body:not(.nav-collapsed) {
+  padding-left: var(--navbar-width);
 }
 
+/* Mobile adjustments */
 @media (max-width: 767.98px) {
   body {
-    padding-left: 0;
+    padding-left: 0 !important; /* Always keep content full width on mobile */
+  }
+  
+  /* Ensure button stays at left on mobile regardless of navbar state */
+  .nav-toggle-btn {
+    left: 20px !important;
   }
 }

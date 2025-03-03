@@ -9,7 +9,7 @@
   
   .canvas-container {
     position: relative;
-    border: 10px solid #949494b7;
+    border: 10px solid #D39D55;
     border-radius: 15px;
     padding: 5px;
     background-color: rgba(255, 255, 255, 0.1);
@@ -21,8 +21,8 @@
   .clear-button {
     margin-top: 15px;
     padding: 10px 20px;
-    background-color: #9DBC98;
-    color: #503C3C;
+    background-color: #970e47;
+    color: #D39D55;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -38,7 +38,7 @@
   .results-container {
     margin-top: 15px;
     width: 400px;
-    border: 8px solid #9DBC98;
+    border: 8px solid #970e47;
     border-radius: 5px;
     padding: 10px;
     font-size: 19px;

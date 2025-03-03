@@ -42,22 +42,17 @@ const CVPage = () => {
           <div className="timeline-item">
             <div className="timeline-content">
               <h2>Experience</h2>
-              <p>
-                Part of the software engineering team working on the telemetry project, importing data from wireless sensors into an InfluxDB database.
-              </p>
-              <p>
-                Developed a barrier system for controlling wood flow by scanning truck volumes and comparing data from web scraping.
-              </p>
               <ul>
                 <li><strong>ART-TU Formula Student</strong> (Oct 2024 - present)<br />
                 Low Voltage and Software Engineer</li>
-                
+                <p>I am curently working on the telemetry subsystem for my team's electric vehicle, managing raw data collected from all the car's sensors and sent through Teensy boards via LoRaWAN network server. The data is processed and stored in a database that runs in a Docker Container. the data is then viewed in various forms and calculations for e=improving the car's perfoemance for the next races.</p>
                 <li><strong>Trizan</strong> (Dec 2024 - Present)<br />
                 Software Engineer Intern<br />
-                Developing a website builder web application in a team of 8 people</li>
-                
+                </li>
+                <p>Developing a free to use website-builder as part of career-developing internationsl volunteering program. As a backend engneer, I am responsible for designing and optimizing the database, implementing secure authentication with JWT, managing user authorization, and structuring the app's core functionality. Additionally, involved in ensuring API efficiency, handling data flow, and contributing to overall backend architecture and scalability.</p>
                 <li><strong>Accenture</strong> (Mar 2022 - Nov 2022)<br />
                 Full Stack Engineer Apprenticeship</li>
+                <p>I worked on a barrier system to control the flow of wood from a forest by scanning the volume of empty and full trucks and comparing data obtained through web scraping. This first team-based project strengthened my collaboration, problem-solving, and communication skills while tackling real-world challenges.</p>
               </ul>
             </div>
           </div>

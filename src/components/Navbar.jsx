@@ -2,52 +2,66 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Navbar.css';
+// Import the logo image
+import WebsiteLogo from '../assets/WebsiteLogo.png';
 
 const CustomNavbar = () => {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState('');
-  const [collapsed, setCollapsed] = useState(false);
+  // Start with collapsed state by default
+  const [collapsed, setCollapsed] = useState(true);
   
   useEffect(() => {
+    // Set active link based on current location
     setActiveLink(location.pathname);
     
-    // Check if navbar state is saved
-    const savedState = localStorage.getItem('navbarCollapsed');
-    if (savedState) {
-      setCollapsed(savedState === 'true');
-    }
+    // Apply initial collapsed state to body on component mount
+    document.body.classList.add('nav-collapsed');
     
-    // Handle resize for responsive behavior
+    // Ensure navbar stays collapsed on mobile
     const handleResize = () => {
       if (window.innerWidth < 768) {
         setCollapsed(true);
+        document.body.classList.add('nav-collapsed');
       }
     };
     
     window.addEventListener('resize', handleResize);
-    handleResize();
+    handleResize(); // Call it once on initial render
     
+    // Clean up event listener on unmount
     return () => window.removeEventListener('resize', handleResize);
   }, [location]);
   
   const toggleNavbar = () => {
     const newState = !collapsed;
     setCollapsed(newState);
-    localStorage.setItem('navbarCollapsed', newState);
-    document.body.classList.toggle('nav-collapsed', newState);
+    
+    // Toggle body class to adjust main content
+    if (newState) {
+      document.body.classList.add('nav-collapsed');
+    } else {
+      document.body.classList.remove('nav-collapsed');
+    }
   };
 
   return (
     <>
-      <div className={`navbar-backdrop ${collapsed ? 'collapsed' : ''}`} onClick={toggleNavbar}></div>
+      {/* Backdrop for mobile - only visible when navbar is open on mobile */}
+      <div 
+        className={`navbar-backdrop ${collapsed ? 'collapsed' : ''}`} 
+        onClick={toggleNavbar}
+      ></div>
       
+      {/* Main navbar */}
       <nav className={`custom-navbar ${collapsed ? 'collapsed' : ''}`}>
         <div className="navbar-header">
           <div className="navbar-brand">
+            {/* Logo container with image */}
             <div className="logo-container">
-              <span className="navbar-logo">YD</span>
+              <img src={WebsiteLogo} alt="Logo" className="navbar-logo-img" />
             </div>
-            <h4 className="brand-name">Your Brand</h4>
+            <h4 className="brand-name">Herbil Ioan</h4>
           </div>
         </div>
         
@@ -88,8 +102,12 @@ const CustomNavbar = () => {
         </div>
       </nav>
       
-      {/* Separate toggle button outside the navbar */}
-      <button className="nav-toggle-btn" onClick={toggleNavbar} aria-label="Toggle navigation">
+      {/* Toggle button that moves right when navbar opens */}
+      <button 
+        className={`nav-toggle-btn ${collapsed ? 'collapsed' : ''}`} 
+        onClick={toggleNavbar} 
+        aria-label="Toggle navigation"
+      >
         <span className="hamburger-icon">☰</span>
       </button>
     </>
