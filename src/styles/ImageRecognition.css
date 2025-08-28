@@ -9,43 +9,49 @@
   
   .canvas-container {
     position: relative;
-    border: 10px solid #D39D55;
-    border-radius: 15px;
-    padding: 5px;
-    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-2);
+    background-color: var(--color-surface);
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: var(--shadow-sm);
   }
   
   .clear-button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #970e47;
-    color: #D39D55;
-    border: none;
-    border-radius: 5px;
+    margin-top: var(--space-3);
+    padding: 10px 16px;
+    background-color: var(--color-accent-2);
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
     cursor: pointer;
     font-family: 'Cascadia Code', monospace;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease, transform 0.06s ease;
   }
   
   .clear-button:hover {
-    background-color: #F9EFDB;
+    background-color: #b31356;
+  }
+
+  .clear-button:active {
+    transform: translateY(1px);
   }
   
   .results-container {
-    margin-top: 15px;
+    margin-top: var(--space-3);
     width: 400px;
-    border: 8px solid #970e47;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 19px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3);
+    font-size: 18px;
     font-family: 'Cascadia Code', monospace;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--color-elevated);
     text-align: center;
-    color: white;
+    color: var(--color-text);
+    box-shadow: var(--shadow-sm);
   }
   
   /* Responsive adjustments */

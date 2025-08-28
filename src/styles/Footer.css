@@ -1,19 +1,25 @@
 /* src/styles/Footer.css */
 .custom-footer {
-    background-color: #1a1a1a;
-    color: #fff;
-    padding: 1rem 0;
-    border-top: 1px solid #970e47; /* lime green accent */
-    margin-top: 2rem;
-    transition: background-color 0.3s ease;
-  }
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    padding: var(--space-4) 0;
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--space-6);
+    transition: background-color 0.2s ease;
+}
   
-  .custom-footer a {
-    color: #D39D55;
+.custom-footer a {
+    color: var(--color-accent);
     text-decoration: none;
-  }
+    font-weight: 600;
+}
   
-  .custom-footer a:hover {
+.custom-footer a:hover {
     text-decoration: underline;
-  }
+}
+
+.custom-footer a:focus-visible {
+    outline: none;
+    box-shadow: var(--ring);
+}
   

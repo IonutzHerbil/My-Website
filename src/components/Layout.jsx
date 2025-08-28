@@ -7,9 +7,11 @@ const Layout = ({ children }) => {
   return (
     <>
       <CustomNavbar />
-      {/* Add top padding equal to the navbar height */}
-      <main style={{ paddingTop: '80px', minHeight: 'calc(100vh - 80px)' }}>
-        {children}
+      {/* Main content wrapper with consistent padding and max width */}
+      <main style={{ paddingTop: '80px', minHeight: 'calc(100vh - 80px)', display: 'flex' }}>
+        <div className="container" style={{ width: '100%' }}>
+          {children}
+        </div>
       </main>
       <Footer />
     </>

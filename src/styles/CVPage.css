@@ -1,358 +1,118 @@
-/* src/styles/CVPage.css - Enhanced Version */
+/* src/styles/CVPage.css - Modern Single-Column CV */
 .cv-page {
-  background-color: #1a1a1a;
-  color: #fff;
-  font-family: 'Roboto Mono', monospace;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   padding-top: 80px; /* accommodates fixed navbar */
   min-height: 100vh;
-  background-image: 
-    radial-gradient(at 10% 10%, rgba(151, 14, 71, 0.1) 0, transparent 50%),
-    radial-gradient(at 90% 90%, rgba(211, 157, 85, 0.1) 0, transparent 50%);
+  background-image:
+    radial-gradient(at 10% 10%, rgba(124, 77, 255, 0.08) 0, transparent 50%),
+    radial-gradient(at 90% 90%, rgba(138, 180, 255, 0.08) 0, transparent 50%);
 }
 
 .cv-content {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: var(--space-6) var(--space-5);
 }
 
+/* Header */
 .cv-header {
   text-align: center;
-  margin-bottom: 4rem;
-  position: relative;
+  margin-bottom: var(--space-7);
 }
 
 .cv-title {
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 1rem;
-  letter-spacing: 2px;
-  text-shadow: 3px 3px 0px rgba(151, 14, 71, 0.5);
-  position: relative;
-  display: inline-block;
-}
-
-.cv-title::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -15px;
-  width: 120%;
-  height: 4px;
-  background: linear-gradient(90deg, transparent, #D39D55, transparent);
-  transform: translateX(-50%);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+  letter-spacing: 0.5px;
 }
 
 .cv-subtitle {
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: #D39D55;
-  margin-top: 1rem;
-  letter-spacing: 1px;
+  font-size: 0.98rem;
+  color: var(--color-text-muted);
 }
 
-/* Social links styling */
 .social-links {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-top: 1.5rem;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
 }
 
 .social-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--color-text);
   text-decoration: none;
-  background-color: rgba(151, 14, 71, 0.8);
-  padding: 0.5rem 1.2rem;
-  border-radius: 30px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(211, 157, 85, 0.3);
-  min-width: 180px;
-  text-align: center;
+  background-color: var(--color-elevated);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.06s ease;
+  border: 1px solid var(--color-border);
 }
 
-.social-link:hover {
-  background-color: rgba(211, 157, 85, 0.8);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+.social-link:hover { background-color: var(--color-surface); transform: translateY(1px); }
+
+/* Sections */
+.cv-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-5);
 }
 
-.social-link::before {
-  /* Remove this before pseudo-element that was causing alignment issues */
-  display: none;
+.cv-section h2 {
+  font-size: 1.15rem;
+  color: var(--color-accent);
+  margin: 0 0 var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
 }
 
-/* Timeline container */
-.timeline {
-  position: relative;
-  margin: 3rem 0;
-  padding-left: 60px;
-}
+.cv-section p { margin: 0 0 var(--space-3); line-height: 1.75; }
 
-/* Vertical timeline line */
-.timeline::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 30px;
-  width: 4px;
-  background: linear-gradient(to bottom, #970e47, #D39D55);
-  border-radius: 2px;
-}
+.cv-list { list-style: none; padding: 0; margin: 0; }
+.cv-list > li { margin: 0 0 var(--space-3); }
 
-/* Each timeline item */
-.timeline-item {
-  position: relative;
-  margin-bottom: 3.5rem;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 0.8s forwards;
-  animation-delay: calc(var(--item-index, 0) * 0.15s);
-}
+.cv-sublist { list-style: none; padding-left: 1.25rem; margin-top: var(--space-2); }
+.cv-sublist li { position: relative; margin: 0.45rem 0; }
+.cv-sublist li::before { content: '▹'; position: absolute; left: -1.25rem; color: var(--color-accent-2); font-weight: 700; }
 
-.timeline-item:last-child {
-  margin-bottom: 0;
-}
-
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  left: -33px;
-  top: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #D39D55;
-  border: 4px solid #970e47;
-  box-shadow: 0 0 10px rgba(211, 157, 85, 0.7);
-  z-index: 1;
-}
-
-/* Timeline date badge */
-.timeline-date {
-  position: absolute;
-  left: -60px;
-  top: 26px;
-  transform: translateY(-50%) translateX(-100%);
-  background: #970e47;
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  opacity: 0.9;
-}
-
-/* Timeline content box styling */
-.timeline-content {
-  background: rgba(42, 42, 42, 0.9);
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  border-left: 4px solid #D39D55;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.timeline-content:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-}
-
-.timeline-content h2 {
-  color: #D39D55;
-  margin-bottom: 1rem;
-  font-size: 1.6rem;
-  position: relative;
-  padding-bottom: 0.5rem;
-}
-
-.timeline-content h2::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 40px;
-  height: 3px;
-  background: #970e47;
-  border-radius: 2px;
-}
-
-.timeline-content p {
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.timeline-content ul {
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: 1rem;
-}
-
-.timeline-content ul li {
-  margin: 0.7rem 0;
-  position: relative;
-  padding-left: 1.5rem;
-  line-height: 1.5;
-}
-
-.timeline-content ul li::before {
-  content: '▹';
-  position: absolute;
-  left: 0;
-  color: #970e47;
-  font-weight: bold;
-}
-
-/* External links styling */
-.timeline-content a {
-  color: #D39D55;
-  text-decoration: none;
-  position: relative;
-  transition: color 0.3s;
-  font-weight: 500;
-}
-
-.timeline-content a:hover {
-  color: #fff;
-}
-
-.timeline-content a::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  bottom: -2px;
-  left: 0;
-  background-color: #D39D55;
-  transition: transform 0.3s ease;
-  transform: scaleX(0);
-  transform-origin: bottom right;
-}
-
-.timeline-content a:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
-
-/* Skills section enhancements */
-.skills-grid {
+/* Two-column grid for compact items */
+.cv-grid-2 {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
 }
 
-.skill-item {
-  background: rgba(33, 33, 33, 0.6);
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  border-left: 3px solid #D39D55;
-  font-size: 0.9rem;
+.cv-tag {
+  background: var(--color-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
 }
 
-.skill-level {
-  display: block;
-  height: 4px;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-  margin-top: 0.5rem;
-  overflow: hidden;
+/* Skills grid reused */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-3); }
+.skill-item { background: var(--color-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 0.75rem 1rem; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .cv-content { padding: var(--space-5) var(--space-4); }
+  .cv-grid-2 { grid-template-columns: 1fr; }
 }
 
-.skill-level-fill {
-  height: 100%;
-  background: linear-gradient(to right, #970e47, #D39D55);
-  border-radius: 2px;
-}
-
-/* Fade-in animation for timeline items */
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .cv-title {
-    font-size: 2.5rem;
-  }
-  
-  .timeline {
-    padding-left: 40px;
-  }
-  
-  .timeline::before {
-    left: 20px;
-  }
-  
-  .timeline-item::before {
-    left: -23px;
-    width: 16px;
-    height: 16px;
-  }
-  
-  .timeline-date {
-    position: relative;
-    left: 0;
-    top: 0;
-    transform: none;
-    display: inline-block;
-    margin-bottom: 0.5rem;
-  }
-  
-  .skills-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .cv-content {
-    padding: 1rem;
-  }
-  
-  .timeline {
-    padding-left: 30px;
-  }
-  
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Print styles for CV */
+/* Print styles */
 @media print {
-  .cv-page {
-    background: white;
-    color: black;
-    padding-top: 0;
-  }
-  
-  .cv-title {
-    color: #970e47;
-    text-shadow: none;
-  }
-  
-  .timeline-content {
-    box-shadow: none;
-    border: 1px solid #eee;
-    page-break-inside: avoid;
-  }
-  
-  .timeline::before {
-    background: #ccc;
-  }
-  
-  .timeline-item::before {
-    border: 2px solid #970e47;
-  }
+  .cv-page { background: white; color: black; padding-top: 0; }
+  .cv-section { box-shadow: none; border-color: #e5e7eb; }
+  .cv-title { color: #111827; }
 }

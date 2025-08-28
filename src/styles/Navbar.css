@@ -1,13 +1,13 @@
-/* Navbar.css - Correctly Fixed version */
+/* Navbar.css - Modernized */
 :root {
   --navbar-width: 260px;
   --navbar-collapsed-width: 0;
-  --navbar-bg: #222222;
-  --accent-primary: #D39D55;
-  --accent-secondary: #970e47;
-  --text-color: #e2e8f0;
-  --text-muted: #94a3b8;
-  --transition-speed: 0.3s;
+  --navbar-bg: var(--color-surface);
+  --accent-primary: var(--color-accent);
+  --accent-secondary: var(--color-accent-2);
+  --text-color: var(--color-text);
+  --text-muted: var(--color-text-muted);
+  --transition-speed: 0.28s;
 }
 
 /* Main navbar */
@@ -20,10 +20,11 @@
   background-color: var(--navbar-bg);
   color: var(--text-color);
   z-index: 1030;
-  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition-speed);
+  transition: transform var(--transition-speed) ease;
+  border-right: 1px solid var(--color-border);
 }
 
 /* Collapsed state */
@@ -35,67 +36,58 @@
 .navbar-header {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(211, 157, 85, 0.15);
+  padding: var(--space-4) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
+  gap: var(--space-3);
 }
-
-/* Add these styles to your Navbar.css file */
 
 /* Updated logo container for image */
 .logo-container {
-  width: 120px;
-  height: 122px;
-  background: transparent; /* Remove the gradient background */
-  border-radius: 12px;
+  width: 112px;
+  height: 112px;
+  background: transparent;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 5px;
-  overflow: hidden; /* Ensure the image stays within the container */
+  margin-right: var(--space-2);
+  overflow: hidden;
 }
 
 /* Style for the logo image */
 .navbar-logo-img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* This ensures the image maintains its aspect ratio */
+  object-fit: contain;
 }
-
-/* You can remove or comment out these styles if they're still in your CSS */
-/*
-.navbar-logo {
-  color: white;
-  font-weight: 700;
-  font-size: 18px;
-}
-*/
 
 .brand-name {
   margin: 0;
-  font-size: 1.3rem;
-  font-weight: 600;
-  background: linear-gradient(135deg, #D39D55 0%, #970e47 100%);
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 /* Divider */
 .navbar-divider {
-  padding: 1rem 1.5rem 0.5rem;
+  padding: var(--space-4) var(--space-5) var(--space-3);
   display: flex;
   align-items: center;
 }
 
 .navbar-divider span {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
   color: var(--text-muted);
   letter-spacing: 1px;
-  padding: 0 0.5rem;
+  padding: 0 var(--space-2);
 }
 
 .navbar-divider::before,
@@ -103,12 +95,12 @@
   content: '';
   flex: 1;
   height: 1px;
-  background: rgba(211, 157, 85, 0.15);
+  background: var(--color-border);
 }
 
 /* Navbar content */
 .navbar-content {
-  padding: 1rem 0.5rem;
+  padding: var(--space-3) var(--space-2);
   flex: 1;
   overflow-y: auto;
 }
@@ -117,16 +109,22 @@
 .nav-link {
   display: flex;
   align-items: center;
-  padding: 0.75rem 1rem;
+  padding: 0.7rem 0.9rem;
   color: var(--text-color);
   text-decoration: none;
-  margin: 0.2rem 0.5rem;
-  border-radius: 8px;
-  transition: color 0.2s;
+  margin: 0.2rem var(--space-2);
+  border-radius: var(--radius-sm);
+  transition: color 0.18s ease, background-color 0.18s ease;
 }
 
 .nav-link:hover {
   color: var(--accent-primary);
+  background-color: rgba(211, 157, 85, 0.08);
+}
+
+.nav-link:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
 }
 
 .nav-link.active {
@@ -135,8 +133,8 @@
 }
 
 .icon-container {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -144,8 +142,8 @@
 }
 
 .nav-link i {
-  font-size: 1.2rem;
-  color: #D39D55;
+  font-size: 1.1rem;
+  color: var(--accent-primary);
 }
 
 .link-text {
@@ -159,16 +157,16 @@
   top: 20px;
   width: 48px;
   height: 48px;
-  border-radius: 8px;
-  background-color: #970e47;
-  border: 2px solid var(--accent-primary);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-elevated);
+  border: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 1050;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  transition: left var(--transition-speed);
+  box-shadow: var(--shadow-sm);
+  transition: left var(--transition-speed) ease, background-color 0.2s ease;
 }
 
 /* Button position when navbar is open */
@@ -177,7 +175,7 @@
 }
 
 .nav-toggle-btn .hamburger-icon {
-  font-size: 28px;
+  font-size: 24px;
   color: var(--accent-primary);
   line-height: 1;
 }
@@ -193,7 +191,7 @@
   z-index: 1020;
   visibility: visible;
   opacity: 1;
-  transition: opacity var(--transition-speed), visibility var(--transition-speed);
+  transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
 }
 
 .navbar-backdrop.collapsed {
@@ -201,10 +199,10 @@
   opacity: 0;
 }
 
-/* Page content adjustment - CRITICAL FIX */
+/* Page content adjustment */
 body {
   padding-left: 0;
-  transition: padding-left var(--transition-speed);
+  transition: padding-left var(--transition-speed) ease;
 }
 
 /* When navbar is open, push content right */
@@ -215,10 +213,9 @@ body:not(.nav-collapsed) {
 /* Mobile adjustments */
 @media (max-width: 767.98px) {
   body {
-    padding-left: 0 !important; /* Always keep content full width on mobile */
+    padding-left: 0 !important;
   }
-  
-  /* Ensure button stays at left on mobile regardless of navbar state */
+
   .nav-toggle-btn {
     left: 20px !important;
   }
