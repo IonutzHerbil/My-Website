@@ -7,9 +7,19 @@ const Layout = ({ children }) => {
   return (
     <>
       <CustomNavbar />
-      {/* Main content wrapper with consistent padding and max width */}
-      <main style={{ paddingTop: '80px', minHeight: 'calc(100vh - 80px)', display: 'flex' }}>
-        <div className="container" style={{ width: '100%' }}>
+            <main style={{
+        paddingTop: '80px',
+        minHeight: 'calc(100vh - 80px)',
+        flex: '1',
+        display: 'flex',
+        flexDirection: 'column'
+      }}>
+        <div className="container" style={{ 
+          width: '100%', 
+          flex: '1',
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
           {children}
         </div>
       </main>
