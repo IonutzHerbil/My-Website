@@ -1,4 +1,3 @@
-// src/pages/CVPage.jsx
 import React from 'react';
 import '../styles/CVPage.css';
 
@@ -82,25 +81,25 @@ const CVPage = () => {
         <section className="cv-section">
           <h2>Projects & Additional Experience</h2>
           <ul className="cv-list">
-            <li>Low Voltage & Software Engineer Volunteer | ART-TU Formula Student | Oct 2024 - Jul 2025 — Built a telemetry system, processing data for 20+ sensors and points of interest; contributed to PCB/hardware design.</li>
+            <li>Low Voltage & Software Engineer Volunteer | ART-TU Formula Student | Oct 2024 - Jul 2025 - Built a telemetry system, processing data for 20+ sensors and points of interest; contributed to PCB/hardware design.</li>
             <li>Engineered Smart Home Security and Ultrasonic Radar Systems using Arduino and Processing, with real-time object detection, angle scanning, and distance measurement.</li>
             <li>Originality prize - Polihack 48h hackathon 2024. Built an award-winning "Moodlit" smart bed system in a 3-person team, integrating Arduino sensors, ChatGPT, and Azure TTS for personalized children's storytelling.</li>
             <li>Built Interactive Games Hub using React and Spring Boot: Tic Tac Toe, Minesweeper, Memory Matrix with A* pathfinding and matrix algorithms.</li>
             <li>Algorithmic trading - Developed strategies using QuantConnect, AlgoTrader, and Interactive Brokers APIs for automated market analysis and trading.</li>
             <li>BEST course in Technology - Mechanism Design and Control at Suleyman Demirel University, Isparta, Turkey.</li>
-            <li>Infineon Winter School 2024 – Quantum Computing.</li>
+            <li>Infineon Winter School 2024 - Quantum Computing.</li>
             <li>CS50's Introduction to Artificial Intelligence with Python by Harvard.</li>
-            <li>Private Tutor — Taught programming fundamentals and problem-solving to students | 2023–present.</li>
+            <li>Private Tutor - Taught programming fundamentals and problem-solving to students | 2023-present.</li>
           </ul>
         </section>
 
         <section className="cv-section">
           <h2>Languages</h2>
           <div className="skills-grid">
-            <div className="skill-item">English — C1, Cambridge Assessment English (CAE)</div>
-            <div className="skill-item">Romanian — Native</div>
-            <div className="skill-item">Ukrainian — B2</div>
-            <div className="skill-item">French — A2</div>
+            <div className="skill-item">English - C1, Cambridge Assessment English (CAE)</div>
+            <div className="skill-item">Romanian - Native</div>
+            <div className="skill-item">Ukrainian - B2</div>
+            <div className="skill-item">French - A2</div>
           </div>
         </section>
       </div>

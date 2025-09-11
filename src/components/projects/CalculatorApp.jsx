@@ -3,98 +3,101 @@ import '../../styles/CalculatorApp.css';
 
 const CalculatorApp = () => {
   const [display, setDisplay] = useState('0');
-  const [prevValue, setPrevValue] = useState(null);
-  const [operator, setOperator] = useState(null);
+  const [prev, setPrev] = useState(null);
+  const [op, setOp] = useState(null);
+  const [overwrite, setOverwrite] = useState(false);
 
-  const handleNumberClick = (number) => {
-    setDisplay(prevDisplay => 
-      prevDisplay === '0' ? number.toString() : prevDisplay + number
-    );
+  const inputDigit = (d) => {
+    setDisplay((cur) => {
+      if (overwrite || cur === '0') {
+        setOverwrite(false);
+        return String(d);
+      }
+      return cur + d;
+    });
   };
 
-  const handleOperatorClick = (op) => {
-    if (prevValue === null) {
-      setPrevValue(parseFloat(display));
-      setOperator(op);
-      setDisplay('0');
-    } else {
-      calculate();
-      setPrevValue(parseFloat(display));
-      setOperator(op);
-      setDisplay('0');
+  const inputDecimal = () => {
+    setDisplay((cur) => {
+      if (overwrite) {
+        setOverwrite(false);
+        return '0.';
+      }
+      return cur.includes('.') ? cur : cur + '.';
+    });
+  };
+
+  const clearAll = () => {
+    setDisplay('0'); setPrev(null); setOp(null); setOverwrite(false);
+  };
+
+  const doCompute = (a, b, operator) => {
+    switch (operator) {
+      case '+': return a + b;
+      case '-': return a - b;
+      case '×': return a * b;
+      case '÷': return b === 0 ? 'Error' : a / b;
+      case '%': return a % b;
+      default: return b;
     }
   };
 
-  const calculate = () => {
-    const currentValue = parseFloat(display);
-    
-    if (prevValue === null || operator === null) return;
-
-    let result;
-    switch(operator) {
-      case '+':
-        result = prevValue + currentValue;
-        break;
-      case '-':
-        result = prevValue - currentValue;
-        break;
-      case '×':
-        result = prevValue * currentValue;
-        break;
-      case '÷':
-        result = prevValue / currentValue;
-        break;
-      case '%':
-        result = prevValue % currentValue;
-        break;
-      default:
+  const chooseOp = (nextOp) => {
+    const current = parseFloat(display);
+    if (prev === null) {
+      setPrev(current);
+    } else if (!overwrite && op) {
+      const result = doCompute(prev, current, op);
+      if (result === 'Error') {
+        setDisplay('Error'); setPrev(null); setOp(null); setOverwrite(true);
         return;
+      }
+      setPrev(result);
+      setDisplay(String(result));
     }
-
-    setDisplay(result.toString());
-    setPrevValue(null);
-    setOperator(null);
+    setOp(nextOp);
+    setOverwrite(true);
   };
 
-  const handleClear = () => {
-    setDisplay('0');
-    setPrevValue(null);
-    setOperator(null);
-  };
-
-  const handleDecimal = () => {
-    if (!display.includes('.')) {
-      setDisplay(prevDisplay => prevDisplay + '.');
-    }
+  const equals = () => {
+    if (op === null || prev === null) return;
+    const current = parseFloat(display);
+    const result = doCompute(prev, current, op);
+    setDisplay(String(result));
+    setPrev(null);
+    setOp(null);
+    setOverwrite(true);
   };
 
   return (
     <div className="calculator-container">
       <div className="calculator">
-        <div className="display">{display}</div>
+        <div className={`calculator-display${display === 'Error' ? ' error' : ''}`} aria-live="polite">
+          {display}
+        </div>
         <div className="calculator-grid">
-          <button onClick={handleClear} className="button clear">C</button>
-          <button onClick={() => handleOperatorClick('%')} className="button operator">%</button>
-          <button onClick={() => handleOperatorClick('÷')} className="button operator">÷</button>
-          <button onClick={() => handleOperatorClick('×')} className="button operator">×</button>
-          
-          <button onClick={() => handleNumberClick(7)} className="button number">7</button>
-          <button onClick={() => handleNumberClick(8)} className="button number">8</button>
-          <button onClick={() => handleNumberClick(9)} className="button number">9</button>
-          <button onClick={() => handleOperatorClick('-')} className="button operator">-</button>
-          
-          <button onClick={() => handleNumberClick(4)} className="button number">4</button>
-          <button onClick={() => handleNumberClick(5)} className="button number">5</button>
-          <button onClick={() => handleNumberClick(6)} className="button number">6</button>
-          <button onClick={() => handleOperatorClick('+')} className="button operator">+</button>
-          
-          <button onClick={() => handleNumberClick(1)} className="button number">1</button>
-          <button onClick={() => handleNumberClick(2)} className="button number">2</button>
-          <button onClick={() => handleNumberClick(3)} className="button number">3</button>
-          <button onClick={calculate} className="button equals">=</button>
-          
-          <button onClick={() => handleNumberClick(0)} className="button number zero">0</button>
-          <button onClick={handleDecimal} className="button number">.</button>
+          <button className="calculator-button clear" onClick={clearAll}>C</button>
+          <button className="calculator-button operator" onClick={() => chooseOp('%')}>%</button>
+          <button className="calculator-button operator" onClick={() => chooseOp('÷')}>÷</button>
+          <button className="calculator-button operator" onClick={() => chooseOp('×')}>×</button>
+
+          <button className="calculator-button number" onClick={() => inputDigit(7)}>7</button>
+          <button className="calculator-button number" onClick={() => inputDigit(8)}>8</button>
+          <button className="calculator-button number" onClick={() => inputDigit(9)}>9</button>
+          <button className="calculator-button operator" onClick={() => chooseOp('-')}>-</button>
+
+          <button className="calculator-button number" onClick={() => inputDigit(4)}>4</button>
+          <button className="calculator-button number" onClick={() => inputDigit(5)}>5</button>
+          <button className="calculator-button number" onClick={() => inputDigit(6)}>6</button>
+          <button className="calculator-button operator" onClick={() => chooseOp('+')}>+</button>
+
+          <button className="calculator-button number" onClick={() => inputDigit(1)}>1</button>
+          <button className="calculator-button number" onClick={() => inputDigit(2)}>2</button>
+          <button className="calculator-button number" onClick={() => inputDigit(3)}>3</button>
+          <button className="calculator-button equals" onClick={equals}>=</button>
+
+          <button className="calculator-button number zero" onClick={() => inputDigit(0)}>0</button>
+          <button className="calculator-button number" onClick={inputDecimal}>.</button>
         </div>
       </div>
     </div>
