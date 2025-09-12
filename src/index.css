@@ -105,7 +105,11 @@ body {
   font-weight: var(--font-normal);
   line-height: var(--leading-normal);
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background: linear-gradient(90deg, 
+    rgba(156, 163, 175, 0.3) 0%,
+    rgba(156, 163, 175, 0.3) 50%,
+   #0f172a 50%,
+   #0f172a 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
