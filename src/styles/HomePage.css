@@ -11,27 +11,35 @@
   right: 0;
   bottom: 0;
   background: linear-gradient(90deg, 
-    rgba(107, 114, 128, 0.15) 0%,
-    rgba(107, 114, 128, 0.15) 50%,
-    rgba(55, 65, 81, 0.2) 50%,
-    rgba(55, 65, 81, 0.2) 100%);
+    rgba(156, 163, 175, 0.3) 0%,
+    rgba(156, 163, 175, 0.3) 50%,
+    rgba(31, 41, 55, 0.4) 50%,
+    rgba(31, 41, 55, 0.4) 100%);
   z-index: -1;
   pointer-events: none;
 }
 
-.hero-section {
+.hero-section,
+.about-section,
+.skills-section,
+.experience-section,
+.contact-section {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 clamp(var(--space-4), 4vw, var(--space-8));
+  padding: var(--space-20) clamp(var(--space-4), 4vw, var(--space-8));
   text-align: center;
   position: relative;
   background: url('/Ioan-Herbil_bg.png') center/cover no-repeat;
   background-attachment: fixed;
 }
 
-.hero-section::before {
+.hero-section::before,
+.about-section::before,
+.skills-section::before,
+.experience-section::before,
+.contact-section::before {
   content: '';
   position: absolute;
   top: 0;
@@ -42,9 +50,13 @@
   z-index: 0;
 }
 
-.hero-content {
+.hero-content,
+.section-container {
   position: relative;
   z-index: 1;
+}
+
+.hero-content {
   max-width: 800px;
   margin: 0 auto;
 }
@@ -134,42 +146,6 @@
   color: var(--color-primary);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-}
-
-.about-section,
-.skills-section,
-.experience-section,
-.contact-section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-20) clamp(var(--space-4), 4vw, var(--space-8));
-  background: url('/src/assets/Ioan-Herbil_bg.png') center/cover no-repeat;
-  background-attachment: fixed;
-  position: relative;
-}
-
-.about-section::before,
-.skills-section::before,
-.experience-section::before,
-.contact-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.85);
-  z-index: 0;
-}
-
-.about-section .section-container,
-.skills-section .section-container,
-.experience-section .section-container,
-.contact-section .section-container {
-  position: relative;
-  z-index: 1;
 }
 
 .section-container {
