@@ -29,7 +29,7 @@ const CustomNavbar = () => {
       <div className="topnav-inner">
         <Link className="brand" to="/">
           <img 
-            src="/src/assets/ioan-herbil-high-resolution-logo-transparent.png" 
+            src="/ioan-herbil-high-resolution-logo-transparent.png" 
             alt="Ioan Herbil Logo" 
             className="brand-logo"
           />
