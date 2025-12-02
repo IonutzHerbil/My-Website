@@ -72,7 +72,7 @@ const HomePage = () => {
             </p>
             <p>
               Currently studying at Technical University of Cluj-Napoca and doing an exchange at 
-              University of Limerick. I've worked with companies like Yonder, AirGradient, and 
+              University of Limerick. I've worked with companies like Yonder, and 
               Accenture, building scalable platforms and complex systems.
             </p>
           </div>
