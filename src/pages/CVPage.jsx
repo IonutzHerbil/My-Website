@@ -54,14 +54,6 @@ const CVPage = () => {
               </ul>
             </li>
             <li>
-              <strong>Full Stack Intern | AirGradient</strong> | Jul 2025 - Aug 2025
-              <ul className="cv-sublist">
-                <li>Created Vue 3 composables for geolocation and toast notifications with Vuetify</li>
-                <li>Engineered high-performance meteorological visualizations of 10,000+ data points using NOAA GRIB2 data, bilinear interpolation, optimized canvas rendering, and real-time particle animation</li>
-                <li><em>Technologies:</em> Vue.js, TypeScript, Canvas API, Node.js, GRIB2</li>
-              </ul>
-            </li>
-            <li>
               <strong>Full Stack Volunteer Developer | Trizan</strong> | Dec 2024 - Mar 2025
               <ul className="cv-sublist">
                 <li>Engineered a free website-builder platform with optimized database design, secure JWT authentication, user authorization management, and scalable backend architecture</li>

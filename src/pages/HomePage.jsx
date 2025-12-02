@@ -140,15 +140,6 @@ const HomePage = () => {
             <div className="timeline-item">
               <div className="timeline-marker"></div>
               <div className="timeline-content">
-                <h4>Full Stack Intern</h4>
-                <span className="company">AirGradient</span>
-                <span className="period">Jul 2025 - Aug 2025</span>
-                <p>Created Vue 3 composables and engineered high-performance meteorological visualizations with 10,000+ data points.</p>
-              </div>
-            </div>
-            <div className="timeline-item">
-              <div className="timeline-marker"></div>
-              <div className="timeline-content">
                 <h4>Full Stack Volunteer Developer</h4>
                 <span className="company">Trizan</span>
                 <span className="period">Dec 2024 - Mar 2025</span>
