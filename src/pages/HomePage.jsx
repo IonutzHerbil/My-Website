@@ -36,7 +36,7 @@ const HomePage = () => {
             <span>Professional Developer</span>
           </div>
           <h1 className="hero-title">
-            <span className="gradient-text">Ioan Herbil</span>
+            Ioan Herbil
           </h1>
           <p className="hero-subtitle">
             Computer Engineering student crafting human-centered software and performant systems.

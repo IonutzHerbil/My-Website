@@ -48,7 +48,14 @@ const WeatherApp = () => {
 
       {error && <div className="error">{error}</div>}
 
-      {weatherData && (
+      {loading && (
+        <div className="weather-loading">
+          <div className="loading-spinner"></div>
+          <p>Loading weather data...</p>
+        </div>
+      )}
+
+      {weatherData && !loading && (
         <div className="weather-display">
           <h2>{weatherData.name}</h2>
           <p className="temperature">{weatherData.temperature}°C</p>

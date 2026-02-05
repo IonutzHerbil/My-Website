@@ -6,29 +6,31 @@ const CalculatorApp = () => {
   const [prev, setPrev] = useState(null);
   const [op, setOp] = useState(null);
   const [overwrite, setOverwrite] = useState(false);
+  const [equation, setEquation] = useState('');
 
   const inputDigit = (d) => {
-    setDisplay((cur) => {
-      if (overwrite || cur === '0') {
-        setOverwrite(false);
-        return String(d);
-      }
-      return cur + d;
-    });
+    if (overwrite) {
+      setOverwrite(false);
+      setDisplay(String(d));
+    } else if (display === '0') {
+      setDisplay(String(d));
+      setEquation(String(d));
+    } else {
+      setDisplay(display + d);
+    }
   };
 
   const inputDecimal = () => {
-    setDisplay((cur) => {
-      if (overwrite) {
-        setOverwrite(false);
-        return '0.';
-      }
-      return cur.includes('.') ? cur : cur + '.';
-    });
+    if (overwrite) {
+      setOverwrite(false);
+      setDisplay('0.');
+    } else if (!display.includes('.')) {
+      setDisplay(display + '.');
+    }
   };
 
   const clearAll = () => {
-    setDisplay('0'); setPrev(null); setOp(null); setOverwrite(false);
+    setDisplay('0'); setPrev(null); setOp(null); setOverwrite(false); setEquation('');
   };
 
   const doCompute = (a, b, operator) => {
@@ -46,14 +48,18 @@ const CalculatorApp = () => {
     const current = parseFloat(display);
     if (prev === null) {
       setPrev(current);
+      setEquation(display + ' ' + nextOp + ' ');
     } else if (!overwrite && op) {
       const result = doCompute(prev, current, op);
       if (result === 'Error') {
-        setDisplay('Error'); setPrev(null); setOp(null); setOverwrite(true);
+        setDisplay('Error'); setPrev(null); setOp(null); setOverwrite(true); setEquation('Error');
         return;
       }
       setPrev(result);
       setDisplay(String(result));
+      setEquation(String(result) + ' ' + nextOp + ' ');
+    } else {
+      setEquation(display + ' ' + nextOp + ' ');
     }
     setOp(nextOp);
     setOverwrite(true);
@@ -63,6 +69,7 @@ const CalculatorApp = () => {
     if (op === null || prev === null) return;
     const current = parseFloat(display);
     const result = doCompute(prev, current, op);
+    setEquation(equation + ' ' + display + ' = ' + String(result));
     setDisplay(String(result));
     setPrev(null);
     setOp(null);
@@ -72,6 +79,7 @@ const CalculatorApp = () => {
   return (
     <div className="calculator-container">
       <div className="calculator">
+        <div className="calculator-equation">{equation || '\u00A0'}</div>
         <div className={`calculator-display${display === 'Error' ? ' error' : ''}`} aria-live="polite">
           {display}
         </div>

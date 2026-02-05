@@ -9,19 +9,25 @@ const PROJECTS = [
     id: 'image-recognition',
     title: 'Doodle Classifier',
     description: 'Draw something and let AI recognize your doodle!',
-    component: ImageRecognition
+    component: ImageRecognition,
+    icon: '🎨',
+    color: '#8b5cf6'
   },
   {
     id: 'weather-app',
     title: 'Weather Forecast',
     description: 'Get real-time weather information for any city.',
-    component: WeatherApp
+    component: WeatherApp,
+    icon: '🌤️',
+    color: '#3b82f6'
   },
   {
     id: 'calculator-app',
     title: 'Calculator',
     description: 'A simple and functional calculator.',
-    component: CalculatorApp
+    component: CalculatorApp,
+    icon: '🔢',
+    color: '#10b981'
   }
 ];
 
@@ -51,8 +57,9 @@ const ProjectsPage = () => {
                 key={project.id}
                 className={`project-nav-item ${activeProject.id === project.id ? 'active' : ''}`}
                 onClick={() => setActiveProject(project)}
+                style={{ '--project-color': project.color }}
               >
-                <div className="project-nav-number">{String(index + 1).padStart(2, '0')}</div>
+                <div className="project-nav-icon">{project.icon}</div>
                 <div className="project-nav-content">
                   <h3 className="project-nav-title">{project.title}</h3>
                   <p className="project-nav-description">{project.description}</p>
