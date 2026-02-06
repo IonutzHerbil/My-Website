@@ -15,15 +15,6 @@ const CustomNavbar = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => {
-    const links = document.querySelectorAll('.nav-link');
-    links.forEach((link, index) => {
-      setTimeout(() => {
-        link.classList.add('bounce');
-        setTimeout(() => link.classList.remove('bounce'), 2000);
-      }, index * 500);
-    });
-  }, []);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
