@@ -5,18 +5,16 @@
   transform: translateX(-50%);
   width: calc(100% - 60px);
   max-width: 1400px;
-  background: rgba(255, 255, 255, 0.445);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   z-index: 1000;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   border-radius: 20px;
-  border: 1px solid rgba(30, 64, 175, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 2px solid var(--color-border);
 }
 
 .topnav.scrolled {
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
-  border-color: rgba(30, 64, 175, 0.15);
+  border-color: var(--color-primary);
 }
 
 .topnav-inner {
